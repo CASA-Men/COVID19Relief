@@ -9,7 +9,9 @@ using COVID19Relief.Middleware.Model;
 
 namespace COVID19Relief.Middleware.Controllers
 {
-    public class EmploymentDetailsController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class EmploymentDetailsController : ControllerBase
     {
         private readonly COVONENINEContext _context;
 
@@ -19,13 +21,17 @@ namespace COVID19Relief.Middleware.Controllers
         }
 
         // GET: EmploymentDetails
+        [HttpGet]
+        [Route("GetAllEmploymentDetails")]
         public async Task<IActionResult> Index()
         {
             var cOVONENINEContext = _context.EmploymentDetails.Include(e => e.Users);
-            return View(await cOVONENINEContext.ToListAsync());
+            return Ok(await cOVONENINEContext.ToListAsync());
         }
 
         // GET: EmploymentDetails/Details/5
+        [HttpGet]
+        [Route("GetDetails")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -41,20 +47,22 @@ namespace COVID19Relief.Middleware.Controllers
                 return NotFound();
             }
 
-            return View(employmentDetails);
+            return Ok(employmentDetails);
         }
 
-        // GET: EmploymentDetails/Create
-        public IActionResult Create()
-        {
-            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "AccountNumber");
-            return View();
-        }
+        //// GET: EmploymentDetails/Create
+        //public IActionResult Create()
+        //{
+        //    ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "AccountNumber");
+        //    return View();
+        //}
 
         // POST: EmploymentDetails/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Route("CreateEmploymentDetails")]
+
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EmploymentDetailsId,UsersId,OrganizationName,OrganizationAddress,OrganizationType,PositionHeld,EmploymentType,EmploymentStatus,EmploymentDate,LastDayAtJob,Stateid,CreatedOn")] EmploymentDetails employmentDetails)
         {
@@ -62,33 +70,35 @@ namespace COVID19Relief.Middleware.Controllers
             {
                 _context.Add(employmentDetails);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return Ok(true);
             }
-            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "AccountNumber", employmentDetails.UsersId);
-            return View(employmentDetails);
+            //ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "AccountNumber", employmentDetails.UsersId);
+            return Ok(false);
         }
 
-        // GET: EmploymentDetails/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: EmploymentDetails/Edit/5
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var employmentDetails = await _context.EmploymentDetails.FindAsync(id);
-            if (employmentDetails == null)
-            {
-                return NotFound();
-            }
-            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "AccountNumber", employmentDetails.UsersId);
-            return View(employmentDetails);
-        }
+        //    var employmentDetails = await _context.EmploymentDetails.FindAsync(id);
+        //    if (employmentDetails == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "AccountNumber", employmentDetails.UsersId);
+        //    return View(employmentDetails);
+        //}
 
         // POST: EmploymentDetails/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Route("EditEmploymentDetails")]
+
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("EmploymentDetailsId,UsersId,OrganizationName,OrganizationAddress,OrganizationType,PositionHeld,EmploymentType,EmploymentStatus,EmploymentDate,LastDayAtJob,Stateid,CreatedOn")] EmploymentDetails employmentDetails)
         {
@@ -115,40 +125,42 @@ namespace COVID19Relief.Middleware.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Ok(true);
             }
-            ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "AccountNumber", employmentDetails.UsersId);
-            return View(employmentDetails);
+            //ViewData["UsersId"] = new SelectList(_context.Users, "UsersId", "AccountNumber", employmentDetails.UsersId);
+            return Ok(false);
         }
 
-        // GET: EmploymentDetails/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: EmploymentDetails/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var employmentDetails = await _context.EmploymentDetails
-                .Include(e => e.Users)
-                .FirstOrDefaultAsync(m => m.EmploymentDetailsId == id);
-            if (employmentDetails == null)
-            {
-                return NotFound();
-            }
+        //    var employmentDetails = await _context.EmploymentDetails
+        //        .Include(e => e.Users)
+        //        .FirstOrDefaultAsync(m => m.EmploymentDetailsId == id);
+        //    if (employmentDetails == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(employmentDetails);
-        }
+        //    return View(employmentDetails);
+        //}
 
         // POST: EmploymentDetails/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Route("DeleteEmploymentDetails")]
+
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var employmentDetails = await _context.EmploymentDetails.FindAsync(id);
             _context.EmploymentDetails.Remove(employmentDetails);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Ok(nameof(employmentDetails));
         }
 
         private bool EmploymentDetailsExists(int id)

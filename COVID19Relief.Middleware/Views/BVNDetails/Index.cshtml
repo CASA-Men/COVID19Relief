@@ -1,0 +1,151 @@
+@model IEnumerable<COVID19Relief.Middleware.Model.Bvndetails>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MiddleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnrollmentBank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LgaofOrigin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LgaofResidence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nationality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumberAlt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResidentialAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StateOfOrigin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StateOfResidence)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WatchListed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegistrationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentBank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LgaofOrigin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LgaofResidence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nationality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNumberAlt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResidentialAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StateOfOrigin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StateOfResidence)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WatchListed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.AccountNumber)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BvndetailsId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BvndetailsId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BvndetailsId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

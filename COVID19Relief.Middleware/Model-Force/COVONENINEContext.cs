@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace COVID19Relief.Middleware.Model
+namespace COVID19Relief.Middleware.Model-Force
 {
     public partial class COVONENINEContext : DbContext
     {
