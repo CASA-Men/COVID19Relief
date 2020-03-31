@@ -9,7 +9,9 @@ using COVID19Relief.Middleware.Model;
 
 namespace COVID19Relief.Middleware.Controllers
 {
-    public class UsersController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class UsersController : ControllerBase
     {
         private readonly COVONENINEContext _context;
 
@@ -18,12 +20,18 @@ namespace COVID19Relief.Middleware.Controllers
             _context = context;
         }
 
+
+        [HttpGet]
+
         // GET: Users
+        [Route("GetAllUsers")]
+
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Users.ToListAsync());
+            return Ok(await _context.Users.ToListAsync());
         }
-
+        [HttpGet]
+        [Route("GetUserDetails")]
         // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -39,19 +47,21 @@ namespace COVID19Relief.Middleware.Controllers
                 return NotFound();
             }
 
-            return View(users);
+            return Ok(users);
         }
 
-        // GET: Users/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //// GET: Users/Create
+        //public IActionResult Create()
+        //{
+        //    return View();
+        //}
 
         // POST: Users/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Route("CreateUser")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("UsersId,FirstName,MiddleName,LastName,Bvn,BvnIsValidated,Email,EmailIsValidated,PhoneNumber,PhoneNumberIsValidated,AccountNumber,AccountNumberIsValidated,BankId,StateId,CreatedOn,CreatedBy")] Users users)
         {
@@ -61,29 +71,33 @@ namespace COVID19Relief.Middleware.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(users);
+            return Ok(users);
         }
+        //[HttpGet]
 
-        // GET: Users/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        //// GET: Users/Edit/5
+        //[Route("EditUser")]
+        //public async Task<IActionResult> Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
-            {
-                return NotFound();
-            }
-            return View(users);
-        }
+        //    var users = await _context.Users.FindAsync(id);
+        //    if (users == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(users);
+        //}
 
         // POST: Users/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Route("EditUser")]
+
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("UsersId,FirstName,MiddleName,LastName,Bvn,BvnIsValidated,Email,EmailIsValidated,PhoneNumber,PhoneNumberIsValidated,AccountNumber,AccountNumberIsValidated,BankId,StateId,CreatedOn,CreatedBy")] Users users)
         {
@@ -112,29 +126,34 @@ namespace COVID19Relief.Middleware.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(users);
+            return Ok(users);
         }
 
-        // GET: Users/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var users = await _context.Users
-                .FirstOrDefaultAsync(m => m.UsersId == id);
-            if (users == null)
-            {
-                return NotFound();
-            }
+        //[HttpGet]
 
-            return View(users);
-        }
+        //// GET: Users/Delete/5
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var users = await _context.Users
+        //        .FirstOrDefaultAsync(m => m.UsersId == id);
+        //    if (users == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(users);
+        //}
 
         // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Route("DeleteUser")]
+
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

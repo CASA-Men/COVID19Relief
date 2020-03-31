@@ -19,6 +19,9 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.2.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="5.2.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="5.2.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
@@ -28,5 +31,9 @@
     <Compile Remove="Services\AppContext.cs" />
     <Compile Remove="Controllers\UserController.cs" />
     <Compile Remove="Controllers\Users.cs" />
+    <Compile Remove="Model-Force\COVONENINEContext.cs" />
+    <Compile Remove="Model-Force\EmploymentDetails.cs" />
+    <Compile Remove="Model-Force\Users.cs" />
+    <Compile Remove="Model-Force\Bvndetails.cs" />
   </ItemGroup>
 </Project>

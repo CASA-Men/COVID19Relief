@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace COVID19Relief.Middleware.Model
+namespace COVID19Relief.Middleware.Model-Force
 {
     public partial class Users
     {
