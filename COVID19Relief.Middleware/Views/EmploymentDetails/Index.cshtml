@@ -1,0 +1,103 @@
+@model IEnumerable<COVID19Relief.Middleware.Model.EmploymentDetails>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrganizationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrganizationAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrganizationType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PositionHeld)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmploymentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmploymentStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmploymentDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastDayAtJob)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Stateid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizationAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrganizationType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PositionHeld)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmploymentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmploymentStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmploymentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastDayAtJob)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Stateid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.AccountNumber)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmploymentDetailsId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EmploymentDetailsId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmploymentDetailsId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
