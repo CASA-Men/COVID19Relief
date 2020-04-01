@@ -9,8 +9,8 @@ using COVID19Relief.Middleware.Model;
 
 namespace COVID19Relief.Middleware.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
+    //[ApiController]
+    //[Route("[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly COVONENINEContext _context;
