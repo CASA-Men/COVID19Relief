@@ -7,8 +7,8 @@ using Microsoft.Extensions.Logging;
 
 namespace COVID19Relief.Middleware.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
+    //[ApiController]
+    //[Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
