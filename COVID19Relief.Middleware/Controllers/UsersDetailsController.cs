@@ -25,7 +25,6 @@ namespace COVID19Relief.Middleware.Controllers
 
         // GET: Users
         [Route("GetAllUsers")]
-        // GET: api/UsersDetails
         public async Task<ActionResult<IEnumerable<Users>>> GetUsers()
         {
             return await _context.Users.ToListAsync();
