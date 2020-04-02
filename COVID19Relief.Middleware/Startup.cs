@@ -30,7 +30,13 @@ namespace COVID19Relief.Middleware
         {
 
 
-            services.AddCors();
+            services.AddCors(
+                options =>
+                {
+                    options.AddPolicy("AllowOrigin",
+                        builder => builder.AllowAnyOrigin());
+                }
+                );
 
             services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
