@@ -15,10 +15,13 @@ namespace COVID19Relief.Middleware.Model
         {
         }
 
+        public virtual DbSet<Banks> Banks { get; set; }
         public virtual DbSet<Bvndetails> Bvndetails { get; set; }
         public virtual DbSet<SalaryDetails> SalaryDetails { get; set; }
         public virtual DbSet<SalaryWorkersDetails> SalaryWorkersDetails { get; set; }
         public virtual DbSet<SelfEmployedWorkersDetails> SelfEmployedWorkersDetails { get; set; }
+        public virtual DbSet<StatesTable> StatesTable { get; set; }
+        public virtual DbSet<Title> Title { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -32,6 +35,27 @@ namespace COVID19Relief.Middleware.Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Banks>(entity =>
+            {
+                entity.HasKey(e => e.BankId);
+
+                entity.Property(e => e.BankCode).HasMaxLength(50);
+
+                entity.Property(e => e.BankName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.BankSortCode).HasMaxLength(50);
+
+                entity.Property(e => e.BankType)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Nipcode)
+                    .HasColumnName("NIPCode")
+                    .HasMaxLength(50);
+            });
+
             modelBuilder.Entity<Bvndetails>(entity =>
             {
                 entity.ToTable("BVNDetails");
@@ -215,6 +239,38 @@ namespace COVID19Relief.Middleware.Model
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Users_SelfEmployedWorkersDetails");
+            });
+
+            modelBuilder.Entity<StatesTable>(entity =>
+            {
+                entity.HasKey(e => e.StateId);
+
+                entity.Property(e => e.Country)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Region)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.StateCode)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.StateName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Type)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Title>(entity =>
+            {
+                entity.Property(e => e.TitleName)
+                    .IsRequired()
+                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<Users>(entity =>
