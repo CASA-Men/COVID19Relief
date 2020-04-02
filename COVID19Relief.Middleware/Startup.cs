@@ -28,7 +28,9 @@ namespace COVID19Relief.Middleware
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
             //var connection = "Server=66.226.79.101;Initial Catalog=COVONENINE;User Id=NimbleXDev;Password=D@t@b@s3C0n_!@$;";
             var connection = Configuration.GetConnectionString("CovOneNineMsSQLDb");
             services.AddDbContext<COVONENINEContext>(options => options.UseSqlServer(connection));
