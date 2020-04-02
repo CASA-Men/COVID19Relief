@@ -51,7 +51,7 @@ namespace COVID19Relief.Middleware
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CrisisReliefNinjasAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CrisisReliefAPI_AllowAllCoRs", Version = "v1" });
             });
 
         }
