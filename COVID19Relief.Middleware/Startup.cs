@@ -30,7 +30,15 @@ namespace COVID19Relief.Middleware
         {
 
 
-            services.AddCors( );
+            // Add service and create Policy with options
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
+            });
 
             services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -50,9 +58,8 @@ namespace COVID19Relief.Middleware
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             //app.UseCors("AllowOrigin");
-            app.UseCors(
-             options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()
-         );
+            // global policy - assign here or on each controller
+            app.UseCors("CorsPolicy");
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),

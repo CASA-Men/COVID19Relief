@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Cors;
 
 namespace COVID19Relief.Middleware.Controllers
 {
+    [EnableCors("CorsPolicy")]
     [Route("api/Users/")]
     [ApiController]
     public class UsersDetailsController : ControllerBase
@@ -83,7 +84,7 @@ namespace COVID19Relief.Middleware.Controllers
         // POST: api/UsersDetails
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
-        [EnableCors]
+        //EnableCors]
         [HttpPost]
         [Route("CreateUser")]
         public async Task<ActionResult<Users>> PostUsers(Users users)
