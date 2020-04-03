@@ -89,10 +89,18 @@ namespace COVID19Relief.Middleware.Controllers
         [Route("CreateUser")]
         public async Task<ActionResult<Users>> PostUsers(Users users)
         {
-            _context.Users.Add(users);
-            await _context.SaveChangesAsync();
+            try
+            {
+                _context.Users.Add(users);
+                await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsers", new { id = users.UsersId }, users);
+                return CreatedAtAction("GetUsers", new { id = users.UsersId }, users);
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
         }
 
         // DELETE: api/UsersDetails/5
