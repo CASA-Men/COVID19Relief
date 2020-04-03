@@ -30,18 +30,7 @@ namespace COVID19Relief.Middleware
         {
 
 
-            services.AddCors(
-
-                       options =>
-                       {
-                           options.AddPolicy("AllowOrigin",
-                               builder => builder.WithOrigins("http://localhost:4200")
-                               .AllowAnyMethod()
-                               .AllowAnyHeader()
-                               );
-                       }
-
-                );
+            services.AddCors( );
 
             services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -52,7 +41,7 @@ namespace COVID19Relief.Middleware
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CrisisReliefAPI_AllowAllCoRs", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CrisisReliefAPI_v10", Version = "v1" });
             });
 
         }
@@ -60,7 +49,10 @@ namespace COVID19Relief.Middleware
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors("AllowOrigin");
+            //app.UseCors("AllowOrigin");
+            app.UseCors(
+             options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()
+         );
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
