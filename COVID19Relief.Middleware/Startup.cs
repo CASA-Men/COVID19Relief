@@ -31,15 +31,9 @@ namespace COVID19Relief.Middleware
 
 
             services.AddCors(
-                options =>
-                {
-                    options.AddPolicy("AllowOrigin",
-                        builder => 
-                        builder
-                        .AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
-                }
+               
+                       
+                
                 );
 
             services.AddControllers().AddNewtonsoftJson(options =>
@@ -60,7 +54,11 @@ namespace COVID19Relief.Middleware
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseSwagger();
-            app.UseCors();
+            app.UseCors(builder => builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .AllowCredentials());
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
