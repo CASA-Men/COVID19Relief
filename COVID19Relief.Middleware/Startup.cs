@@ -35,7 +35,7 @@ namespace COVID19Relief.Middleware
                        options =>
                        {
                            options.AddPolicy("AllowOrigin",
-                               builder => builder.AllowAnyOrigin()
+                               builder => builder.WithOrigins("http://localhost:4200")
                                .AllowAnyMethod()
                                .AllowAnyHeader()
                                );
