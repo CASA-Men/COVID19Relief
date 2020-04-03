@@ -31,14 +31,7 @@ namespace COVID19Relief.Middleware
 
 
             // Add service and create Policy with options
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder.AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
-            });
+            services.AddCors();
 
             services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -59,7 +52,6 @@ namespace COVID19Relief.Middleware
         {
             //app.UseCors("AllowOrigin");
             // global policy - assign here or on each controller
-            app.UseCors("CorsPolicy");
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
@@ -76,6 +68,7 @@ namespace COVID19Relief.Middleware
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthorization();
 

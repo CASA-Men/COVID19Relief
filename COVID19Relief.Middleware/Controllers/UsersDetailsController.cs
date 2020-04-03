@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Cors;
 
 namespace COVID19Relief.Middleware.Controllers
 {
-    [EnableCors("CorsPolicy")]
+    [EnableCors()]
     [Route("api/Users/")]
     [ApiController]
     public class UsersDetailsController : ControllerBase
