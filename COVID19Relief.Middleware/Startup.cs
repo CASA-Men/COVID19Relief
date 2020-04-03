@@ -31,9 +31,16 @@ namespace COVID19Relief.Middleware
 
 
             services.AddCors(
-               
-                       
-                
+
+                       options =>
+                       {
+                           options.AddPolicy("AllowOrigin",
+                               builder => builder.AllowAnyOrigin()
+                               .AllowAnyMethod()
+                               .AllowAnyHeader()
+                               );
+                       }
+
                 );
 
             services.AddControllers().AddNewtonsoftJson(options =>
@@ -53,10 +60,7 @@ namespace COVID19Relief.Middleware
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseCors(builder => builder
-    .AllowAnyOrigin()
-    .AllowAnyMethod()
-    .AllowAnyHeader());
+            app.UseCors("AllowOrigin");
             app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
