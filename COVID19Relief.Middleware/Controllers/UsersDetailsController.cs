@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using COVID19Relief.Middleware.Model;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.Extensions.Logging;
 
 namespace COVID19Relief.Middleware.Controllers
 {
@@ -16,11 +17,13 @@ namespace COVID19Relief.Middleware.Controllers
     public class UsersDetailsController : ControllerBase
     {
         private readonly COVONENINEContext _context;
+        private readonly ILogger<UsersDetailsController> _logger;
 
 
-        public UsersDetailsController(COVONENINEContext context)
+        public UsersDetailsController(COVONENINEContext context, ILogger<UsersDetailsController> Logger)
         {
             _context = context;
+            _logger = Logger;
         }
 
         [HttpGet]
@@ -91,6 +94,8 @@ namespace COVID19Relief.Middleware.Controllers
         {
             try
             {
+                _logger.LogInformation("1. got user @users", users);
+                _logger.LogInformation($"2. got users {Newtonsoft.Json.JsonConvert.SerializeObject(users)}");
                 _context.Users.Add(users);
                 await _context.SaveChangesAsync();
 
@@ -98,7 +103,7 @@ namespace COVID19Relief.Middleware.Controllers
             }
             catch (Exception ex)
             {
-
+                _logger.LogError(ex.ToString());
                 return BadRequest(ex);
             }
         }
