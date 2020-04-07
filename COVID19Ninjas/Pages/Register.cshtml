@@ -1,0 +1,678 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "User Registration";
+}
+<main class="main">
+    <section class="promo-primary promo-primary--shop">
+        <picture>
+            <source srcset="~/Template/img/shop.jpg" media="(min-width: 992px)" />
+            <img class="img--bg" src="~/Template/img/shop.jpg" alt="img" />
+        </picture>
+        <div class="promo-primary__description"> <span></span></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-auto">
+                    <div class="align-container">
+                        <div class="align-container__item">
+                            <span class="promo-primary__pre-title">Let's Begin</span>
+                            <h1 class="promo-primary__title"><span>User</span> <span>Registration</span></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section start-->
+    <section class="section background--brown">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- checkout start-->
+                    <form class="form checkout-form" action="javascript:void(0);">
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                <ul id="progressbar" style="width:100%;">
+                                    <li class="active">Personal Information</li>
+                                    <li>Employment Information</li>
+                                    <li>Indemnity Agreement</li>
+                                    <li>Validation/Thank you</li>
+                                </ul>
+                                <div class="form__fieldset" id="PersonalInformation">
+                                    <h2 class="form__title">Personal Information</h2>
+                                    <div class="row offset-30">
+                                        <div class="col-lg-6">
+                                            <input class="form__field" type="text" id="lastName" placeholder="Last Name *" />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input class="form__field" type="text" id="firstName" placeholder="First Name *" />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input class="form__field" type="text" id="middleName" placeholder="Middle Name *" />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input class="form__field" type="tel" id="phoneNumber" placeholder="Phone Number *" />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input class="form__field" type="email" id="email" placeholder="Email Address *" />
+                                        </div>
+                                        <div id="bankSelectDiv" class="col-lg-6">
+                                            <div id="bankId" style="display:none;"></div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input class="form__field" type="text" id="accountNumber" placeholder="Account Number *" />
+                                        </div>
+                                        <div id="stateSelectDiv" class="col-lg-6">
+                                            <div id="stateId" style="display:none;"></div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <select class="form__select" id="identityDocumentType">
+                                                <option>Identity DocumentType</option>
+                                                <option value="Identity DocumentType 1">Identity DocumentType 1</option>
+                                                <option value="Identity DocumentType 2">Identity DocumentType 2</option>
+                                                <option value="Identity DocumentType 3">Identity DocumentType 3</option>
+                                                <option value="Identity DocumentType 4">Identity DocumentType 4</option>
+                                                <option value="Identity DocumentType 5">Identity DocumentType 5</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input class="form__field" type="text" id="documentIdNumber" placeholder="Document Id Number *" />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input class="form__field" type="text" id="spouseUniqueNumber" placeholder="Spouse Unique Number *" />
+                                        </div>
+                                        <div class="col-12" style="margin-bottom:20px !important;">
+                                            <button class="form__submit" type="submit" id="gotoStep2">Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form__fieldset" id="EmploymentInformation" style="display: none">
+                                    <h2 class="form__title">Employment Information <span id="empCategory"></span></h2>
+                                    <div class="row offset-30">
+                                        <div class="col-lg-6">
+                                            <select class="form__select" id="IsEmploymentStatus">
+                                                <option>Are you currently employed?</option>
+                                                <option value="Yes">Yes</option>
+                                                <option value="No">No</option>
+                                            </select>
+                                        </div>
+                                        <div id="salaryWorkersDetails" class="row" style="padding:15px !important; display: none">
+                                            <div class="col-lg-6">
+                                                <input class="form__field" type="text" id="activeEmail" placeholder="Active Email" />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input class="form__field" type="text" id="activePhoneNumber1" placeholder="Active PhoneNumber" />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <select class="form__select" id="areYouCurrentlyInEmployment">
+                                                    <option>Are you currently employed?</option>
+                                                    <option value="true">Yes</option>
+                                                    <option value="false">No</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input class="form__field" type="text" id="employerName" placeholder="Employer Name" />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input class="form__field" type="text" id="employerIndustry" placeholder="Employer Industry" />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input class="form__field" type="text" id="employerRcNoOrBrNo" placeholder="Employer RcNo Or BrNo" />
+                                            </div>
+                                            @*<div class="col-lg-6">
+                                                <input class="form__field " type="text" id="" placeholder="Date of Employment" />
+                                            </div>*@
+
+                                            <div class="col-lg-6 input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dateOfEmployment" data-link-format="yyyy-mm-dd">
+                                                <input class="form__field " type="text" placeholder="Date of Employment" value="" readonly />
+                                                <span class="input-group-addon"dateOfEmployment><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                            <input type="hidden" id="dateOfEmployment" value="" />
+
+                                            <div class="col-lg-6 input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dateOfLeaving1" data-link-format="yyyy-mm-dd">
+                                                <input class="form__field " type="text" placeholder="Date of leaving" value="" readonly />
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                            <input type="hidden" id="dateOfLeaving1" value="" />
+
+                                            <div class="col-lg-6">
+                                                <input class="form__field" type="text" id="avgMonthlySalaryForSixMonths1" placeholder="Avg. 6 Months Salary" />
+                                            </div>
+                                        </div>
+                                        <div id="selfEmployedWorkersDetails" class="row" style="padding:15px !important; display: none">
+                                            <div class="col-lg-6">
+                                                <input class="form__field" type="text" id="activePhoneNumber" placeholder="Active Phone Number" />
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <textarea class="form__field form__message" id="activeResidentialAddress" placeholder="Active Residential Address"></textarea>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input class="form__field" type="text" id="nameOfBusiness" placeholder="Name of Business" />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input class="form__field" type="text" id="industry" placeholder="Industry" />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input class="form__field" type="text" id="businessDescription" placeholder="Business Description" />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <input class="form__field" type="text" id="businessRcNoOrBrNo" placeholder="Business RcNo Or BrNo" />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <select class="form__select" id="ownBusinessAlone">
+                                                    <option>Do you own this business alone?</option>
+                                                    <option value="true">Yes</option>
+                                                    <option value="false">No</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <select class="form__select" id="businessStillOperational">
+                                                    <option>Is business still operational?</option>
+                                                    <option value="true">Yes</option>
+                                                    <option value="false">No</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6 input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="startDateOfBusiness" data-link-format="yyyy-mm-dd">
+                                                <input class="form__field " type="text" placeholder="Start Date of Business" value="" readonly />
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                            <input type="hidden" id="startDateOfBusiness" value="" />
+
+                                            <div class="col-lg-6 input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="closeDateOfBusiness" data-link-format="yyyy-mm-dd">
+                                                <input class="form__field " type="text" placeholder="Close Date of Business" value="" readonly />
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                            <input type="hidden" id="closeDateOfBusiness" value="" />
+
+                                            <div class="col-lg-6 input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dateOfLeaving" data-link-format="yyyy-mm-dd">
+                                                <input class="form__field " type="text" placeholder="Date of Leaving" value="" readonly />
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                            <input type="hidden" id="dateOfLeaving" value="" />
+                                            <div class="col-lg-6">
+                                                <input class="form__field" type="text" id="avgMonthlySalaryForSixMonths" placeholder="Avg. 6 Months Salary" />
+                                            </div>
+                                        </div>
+                                        <div id="divBackToStep1gotoStep3" class="col-12" style="margin-bottom:20px !important; display:none;">
+                                            <button class="form__submit" type="submit" id="backToStep1">Previous</button>
+                                            <button class="form__submit" type="submit" id="gotoStep3">Next</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form__fieldset" id="IndemnityAgreement" style="display: none">
+                                    <h2 class="form__title">Indemnity Agreement</h2>
+                                    <div class="row offset-30">
+                                        <div id="indemnityDetails" class="row" style="padding:15px !important;">
+                                            <div class="col-lg-12">
+                                                <h6>Kindly read the below carefully and proceed when done</h6>
+                                                <p>
+                                                <p>
+                                                    Praesent dapibus is not eleifend augue eget sollicitudin velit malesuada liquam
+                                                    les blandit diam ace venenatis feugiat tellus odio. Lorem Ipsum is simply dummy
+                                                    text of the rinting typesetting industry has been the ndustry standard dummy
+                                                    text ever sincer they llam id condimentum purus In non ex at ligula fringilla
+                                                    bortis. Ut et mauris auctor, aliquet nulla sed, aliquam mauris. Vestibulum sed
+                                                    malesuada dolor. Integer fringilla odio a dolor aliqu eu euismod lectus
+                                                    porttitor. Proin et libero nec eros eleifend commodo Phasellus sodales des
+                                                    volutpat diam id sagittis purus egestas dapibus. Donec bibendum est quis mi
+                                                    commodo blandit. Maecenas pellentesque, massa vitae faucibus consectetur, ante
+                                                    magna gravida magna, ut venenatis massa augue et odio. Aliquam luctus viverra
+                                                    velit, non euismod ligula congue sed.
+                                                    <br><br>
+                                                    Mauris nunc leo, sollicitudin a ligula ut, iaculis bibendum lorem. Duis gravida
+                                                    suscipit purus, at consequat de diam sagittis sit amet. Mauris sed nisl vel urna
+                                                    egestas elementum eget quis ipsum. Nulla a enim et justoed facilisis ornare. Sed
+                                                    ante sem, dignissim a vehicula et, rutrum volutpat turpis. Praesent id leo
+                                                    lacinia lesuada tortor ut, lobortis leo. Cras eget sollicitudin lorem. Etiam
+                                                    commodo ultricies luctus. Integer porttitor ligula eget quam blandit finibus.
+                                                    Suspendisse potenti. Nulla blandit augue
+                                                    <br><br>
+                                                    Praesent dapibus is not eleifend augue eget sollicitudin velit malesuada liquam
+                                                    les blandit diam ace venenatis feugiat tellus odio. Lorem Ipsum is simply dummy
+                                                    text of the rinting typesetting industry has been the ndustry standard dummy
+                                                    text ever sincer they llam id condimentum purus In non ex at ligula fringilla
+                                                    bortis. Ut et mauris auctor, aliquet nulla sed, aliquam mauris. Vestibulum sed
+                                                    malesuada dolor. Integer fringilla odio a dolor aliqu eu euismod lectus
+                                                    porttitor. Proin et libero nec eros eleifend commodo Phasellus sodales des
+                                                    volutpat diam id sagittis purus egestas dapibus. Donec bibendum est quis mi
+                                                    commodo blandit. Maecenas pellentesque, massa vitae faucibus consectetur, ante
+                                                    magna gravida magna, ut venenatis massa augue et odio. Aliquam luctus viverra
+                                                    velit, non euismod ligula congue sed.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-12" style="margin-bottom:20px !important;">
+                                            @*<button class="form__submit" type="submit" id="sendEmailActivationLink">Proceed</button>*@
+                                            <a class="form__submit" asp-controller="client" asp-action="dashboard"><span>Proceed</span></a>
+                                            <button class="form__submit" type="submit" id="gotoStep4">Cancel</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form__fieldset" id="ThankyouPage" style="display: none">
+                                    <h2 class="form__title">Thank You!!!</h2>
+                                    <div class="row offset-30">
+                                        <div id="ThankyouPageContent" class="row" style="padding:15px !important;">
+                                            <div class="col-lg-12">
+                                                <h6>Thank you for taking out time to fill this form</h6>
+                                                <p>
+                                                <p>
+                                                    Should you decide to key into the Covid-19 stimulus package, you may login to
+                                                    your profile to continue. Kindly remember your safety and the safety of others
+                                                    in whatever you do.
+                                                <p>
+                                                    <strong>#StayHome, #KeepSocialDistance</strong>.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-12" style="margin-bottom:20px !important;">
+                                            <button class="form__submit" type="submit">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- checkout end-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section end-->
+    <!-- bottom bg start-->
+    @*<section class="bottom-background background--brown">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bottom-background__img"><img src="~/Template/img//bottom-bg.png" alt="img" /></div>
+                    </div>
+                </div>
+            </div>
+        </section>*@
+    <!-- bottom bg end-->
+</main>
+@section covidScripts {
+
+    <script>
+        let appData = {};
+        let option = $("#IsEmploymentStatus");
+        $(document).ready(function () {
+            // Get all the banks and populate the dropdown list
+            getBanks();
+            // Get all the states and populate the dropdown list
+            getStates();
+            // Assign values to the appData Object
+            appData = {
+                salaryWorkers: {
+                    salaryWorkersDetaildId: 0,
+                    userId: 0,
+                    activeEmail: "string",
+                    activePhoneNumber: "string",
+                    areYouCurrentlyInEmployment: true,
+                    employerName: "string",
+                    employerIndustry: "string",
+                    employerRcNoOrBrNo: "string",
+                    dateOfEmployment: "2020-04-05T00:07:28.870Z",
+                    dateOfLeaving: "2020-04-05T00:07:28.870Z",
+                    avgMonthlySalaryForSixMonths: "string",
+                    createdOn: "2020-04-05T00:07:28.870Z"
+                },
+                selfEmployedWorkers: {
+                    selfEmployedWorkersDetailsId: 0,
+                    userId: 0,
+                    activeResidentialAddress: "string",
+                    activePhoneNumber: "string",
+                    nameOfBusiness: "string",
+                    industry: "string",
+                    businessDescription: "string",
+                    businessRcNoOrBrNo: "string",
+                    ownBusinessAlone: true,
+                    businessStillOperational: true,
+                    startDateOfBusiness: "2020-04-05T00:07:28.870Z",
+                    closeDateOfBusiness: "2020-04-05T00:07:28.870Z",
+                    dateOfLeaving: "2020-04-05T00:07:28.870Z",
+                    avgMonthlySalaryForSixMonths: "string",
+                    createdOn: "2020-04-05T00:07:28.870Z"
+                },
+                bvnDetail: {
+                    bvndetailsId: 0,
+                    userId: 0,
+                    firstName: "string",
+                    middleName: "string",
+                    lastName: "string",
+                    dateOfBirth: "2020-04-05T00:16:02.020Z",
+                    registrationDate: "2020-04-05T00:16:02.020Z",
+                    enrollmentBank: "string",
+                    email: "string",
+                    phoneNumber: "string",
+                    gender: "string",
+                    lgaofOrigin: "string",
+                    lgaofResidence: "string",
+                    nationality: "string",
+                    phoneNumberAlt: "string",
+                    residentialAddress: "string",
+                    stateOfOrigin: "string",
+                    stateOfResidence: "string",
+                    watchListed: "string",
+                    createdOn: "2020-04-05T00:16:02.020Z"
+                },
+                salarydetail: {
+                    salaryDetailsId: 0,
+                    userId: 0,
+                    month: 0,
+                    year: 0,
+                    salaryAmount: 0,
+                    createdOn: "2020-04-05T00:16:02.020Z"
+                },
+                user: {
+                    firstName: "string",
+                    middleName: "string",
+                    lastName: "string",
+                    bvn: "string",
+                    bvnIsValidated: true,
+                    email: "string",
+                    emailIsValidated: true,
+                    phoneNumber: "string",
+                    phoneNumberIsValidated: true,
+                    accountNumber: "string",
+                    accountNumberIsValidated: true,
+                    bankId: "string",
+                    stateId: "string",
+                    createdOn: "string",
+                    createdBy: "string",
+                    identityDocumentType: "string",
+                    documentIdNumber: "string",
+                    spouseUniqueNumber: 0,
+                    bvndetails: [],
+                    salaryDetails: [],
+                    salaryWorkersDetails: [],
+                    selfEmployedWorkersDetails: [],
+                }
+            }
+            // Initialize some variables
+            appData.user.salaryWorkersDetails = [];
+            appData.user.salaryDetails = [];
+            appData.user.bvndetails = [];
+            appData.user.selfEmployedWorkersDetails = [];
+            // Get the createdon date
+            var date = Date.now();
+            const formatedDate = dayjs(date).format("YYYY-MM-DD");
+
+            $("#gotoStep2").on('click', function () {
+
+                // Get the field variables
+                appData.user.firstName = $("#firstName").val();
+                appData.user.middleName = $("#middleName").val();
+                appData.user.lastName = $("#lastName").val();
+                appData.user.email = $("#email").val();
+                appData.user.phoneNumber = $("#phoneNumber").val();
+                appData.user.accountNumber = $("#accountNumber").val();
+                appData.user.bankId = $("#bankId option:selected").val();
+                appData.user.stateId = $("#stateId option:selected").val();
+                appData.user.identityDocumentType = $("#identityDocumentType").val();
+                appData.user.documentIdNumber = $("#documentIdNumber").val();
+                appData.user.spouseUniqueNumber = $("#spouseUniqueNumber").val();
+                appData.user.createdOn = formatedDate;
+                appData.user.createdBy = appData.user.firstName + " " + appData.user.lastName;
+
+                // Validate the form fields
+                let isValid = true;
+                $('#firstName, #middleName, #lastName, #email, #phoneNumber, #accountNumber, #documentIdNumber, #spouseUniqueNumber').each(function () {
+                    if ($.trim($(this).val()) == '') {
+                        isValid = false;
+                        $(this).css({
+                            "border": "1px solid red",
+                            "background": "#FFFFFF"
+                        });
+                    } else {
+                        $(this).css({
+                            "border": "",
+                            "background": ""
+                        });
+                    }
+                });
+
+                if (isValid) {
+                    // Proceed to step 2
+                    $("#PersonalInformation").hide();
+                    $("#EmploymentInformation").show();
+                    $("#progressbar li").eq(1).addClass("active");
+                }
+            });
+
+            $("#backToStep1").on('click', function () {
+                // Go back to step 1
+                $("#EmploymentInformation").hide();
+                $("#PersonalInformation").show();
+                $("#progressbar li").eq(1).removeClass("active");
+            });
+
+            $("#IsEmploymentStatus").on('change', function () {
+                option = $("#IsEmploymentStatus");
+                if (option.val() == "Yes") {
+
+                    $('#activeResidentialAddress, #activePhoneNumber, #nameOfBusiness, #industry, #businessDescription, #businessRcNoOrBrNo, #startDateOfBusiness, #closeDateOfBusiness, #dateOfLeaving, #avgMonthlySalaryForSixMonths').each(function () {
+                        $(this).val('');
+                    });
+
+                    $("#selfEmployedWorkersDetails").hide();
+                    $("#salaryWorkersDetails").show();
+                    $("#divBackToStep1gotoStep3").show();
+                    $("#empCategory").html("(salary worker)");
+                    $("#areYouCurrentlyInEmployment option:selected").val("true");
+                    $("#areYouCurrentlyInEmployment option:selected").text("Yes");
+                }
+                else {
+
+                    $('#activeEmail, #activePhoneNumber1, #employerName, #employerIndustry, #employerRcNoOrBrNo, #dateOfEmployment, #dateOfLeaving1, #avgMonthlySalaryForSixMonths1').each(function () {
+                        $(this).val('');
+                    });
+
+                    $("#salaryWorkersDetails").hide();
+                    $("#selfEmployedWorkersDetails").show();
+                    $("#divBackToStep1gotoStep3").show();
+                    $("#empCategory").html("(self-employed worker)");
+                }
+            });
+
+            $("#gotoStep3").on('click', function () {
+
+                // Get the contents of the form fields based on the condition below
+                option = $("#IsEmploymentStatus");
+                if (option.val() == "Yes") {
+
+                    appData.salaryWorkers.activeEmail = $("#activeEmail").val();
+                    appData.salaryWorkers.activePhoneNumber = $("#activePhoneNumber1").val();
+                    appData.salaryWorkers.areYouCurrentlyInEmployment = $("#areYouCurrentlyInEmployment option:selected").val();
+                    appData.salaryWorkers.employerName = $("#employerName").val();
+                    appData.salaryWorkers.employerIndustry = $("#employerIndustry").val();
+                    appData.salaryWorkers.employerRcNoOrBrNo = $("#employerRcNoOrBrNo").val();
+                    appData.salaryWorkers.dateOfEmployment = $("#dateOfEmployment").val();
+                    appData.salaryWorkers.dateOfLeaving = $("#dateOfLeaving1").val();
+                    appData.salaryWorkers.avgMonthlySalaryForSixMonths = $("#avgMonthlySalaryForSixMonths1").val();
+                    appData.salaryWorkers.createdOn = formatedDate;
+
+                    // Validate the form fields
+                    let isValid = true;
+                    $('#activeEmail, #activePhoneNumber1, #employerName, #employerIndustry, #employerRcNoOrBrNo, #dateOfEmployment, #dateOfLeaving1, #avgMonthlySalaryForSixMonths1').each(function () {
+                        if ($.trim($(this).val()) == '') {
+                            isValid = false;
+                            $(this).css({
+                                "border": "1px solid red",
+                                "background": "#FFFFFF"
+                            });
+                        } else {
+                            $(this).css({
+                                "border": "",
+                                "background": ""
+                            });
+                        }
+                    });
+
+                    // Push the salaryWorkerDetails into the salaryWorkersDetails array
+                    appData.user.salaryWorkersDetails.push(appData.salaryWorkers);
+
+                    // Push the salary detail into the salraydetails array
+                    appData.user.salaryDetails.push(appData.salarydetail);
+
+                    // Push the bvnDetails into the bvndetails array
+                    appData.user.bvndetails.push(appData.bvnDetail);
+                    appData.user.selfEmployedWorkersDetails.push(appData.selfEmployedWorkers);
+
+                    console.log(appData.user);
+                    if (isValid) {
+                        createUser();
+                    }
+                }
+                else {
+
+                    appData.selfEmployedWorkers.activeResidentialAddress = $("#activeResidentialAddress").val();
+                    appData.selfEmployedWorkers.activePhoneNumber = $("#activePhoneNumber").val();
+                    appData.selfEmployedWorkers.nameOfBusiness = $("#nameOfBusiness").val();
+                    appData.selfEmployedWorkers.industry = $("#industry").val();
+                    appData.selfEmployedWorkers.businessDescription = $("#businessDescription").val();
+                    appData.selfEmployedWorkers.businessRcNoOrBrNo = $("#businessRcNoOrBrNo").val();
+                    appData.selfEmployedWorkers.ownBusinessAlone = $("#ownBusinessAlone option:selected").val();
+                    appData.selfEmployedWorkers.businessStillOperational = $("#businessStillOperational option:selected").val();
+                    appData.selfEmployedWorkers.startDateOfBusiness = $("#startDateOfBusiness").val();
+                    appData.selfEmployedWorkers.closeDateOfBusiness = $("#closeDateOfBusiness").val();
+                    appData.selfEmployedWorkers.dateOfLeaving = $("#dateOfLeaving").val();
+                    appData.selfEmployedWorkers.avgMonthlySalaryForSixMonths = $("#avgMonthlySalaryForSixMonths").val();
+                    appData.selfEmployedWorkers.createdOn = formatedDate;
+
+                    // Validate the form fields
+                    let isValid = true;
+                    $('#activeResidentialAddress, #activePhoneNumber, #nameOfBusiness, #industry, #businessDescription, #businessRcNoOrBrNo, #startDateOfBusiness, #closeDateOfBusiness, #dateOfLeaving, #avgMonthlySalaryForSixMonths').each(function () {
+                        if ($.trim($(this).val()) == '') {
+                            isValid = false;
+                            $(this).css({
+                                "border": "1px solid red",
+                                "background": "#FFFFFF"
+                            });
+                        } else {
+                            $(this).css({
+                                "border": "",
+                                "background": ""
+                            });
+                        }
+                    });
+
+                    // Push the salaryWorkerDetails into the salaryWorkersDetails array
+                    appData.user.selfEmployedWorkersDetails.push(appData.selfEmployedWorkers);
+
+                    // Push the salary detail into the salraydetails array
+                    appData.user.salaryDetails.push(appData.salarydetail);
+
+                    // Push teh bvnDetails into the bvndetails array
+                    appData.user.bvndetails.push(appData.bvnDetail);
+                    appData.user.salaryWorkersDetails.push(appData.salaryWorkers);
+
+                    console.log(appData.user);
+                    if (isValid) {
+                        createUser();
+                    }
+                }
+            });
+
+            //$("#sendEmailActivationLink").on('click', function () {
+            //    // Send activation link
+            //});
+
+            $("#gotoStep4").on('click', function () {
+                // ThankyouPage
+                $("#IndemnityAgreement").hide();
+                $("#ThankyouPage").show();
+                $("#progressbar li").eq(3).addClass("active");
+            });
+        });
+
+        function createUser() {
+            // Get the base API URI
+            let baseUrl = "https://localhost:44382/api/Users/CreateUser";
+            let data = JSON.stringify(appData.user);
+
+            // Make Ajax call here
+            $.ajax({
+                url: baseUrl,
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: data,
+                success: function (response) {
+                    $("#EmploymentInformation").hide();
+                    $("#IndemnityAgreement").show();
+                    $("#progressbar li").eq(2).addClass("active");
+                    // Add the user object to local storage
+                    let userLocalStorageObj = appData.user;
+                    localStorage.setItem('userObj', JSON.stringify(userLocalStorageObj));
+                },
+                error: function (returnval) {
+                    console.log("Na error be this o...!!!");
+                }
+            });
+        }
+
+        function getBanks() {
+            let baseUrl = "https://localhost:44382/api/Banks";
+            $.ajax({
+                url: baseUrl,
+                type: 'GET',
+                dataType: "json",
+                success: function (response) {
+                    let select_div = "";
+                    let select_div_append = '<div class="nice-select form__select" tabindex="0"><span class="current">Bank</span><ul class="list"><li data-value="Bank" class="option selected focus">Bank</li>';
+                    if (response) {
+                        $.each(response, function (key, value) {
+                            select_div += "<option value='" + value.bankId + "'>" + value.bankName + "</option>";
+                            select_div_append += "<li data-value='" + value.bankId + "' class='option'>" + value.bankName + "</li>";
+                        });
+                        $("#bankId").append(select_div);
+                        select_div_append += "</ul></div>";
+                        $("#bankSelectDiv").append(select_div_append);
+                    }
+                    else {
+                    }
+                },
+                error: function (returnval) {
+                    console.log("Na error be this o...!!!");
+                }
+            });
+        }
+
+        function getStates() {
+            let baseUrl = "https://localhost:44382/api/StatesTables";
+            $.ajax({
+                url: baseUrl,
+                type: 'GET',
+                dataType: "json",
+                success: function (response) {
+                    let select_div = "";
+                    let select_div_append = '<div class="nice-select form__select" tabindex="0"><span class="current">State</span><ul class="list"><li data-value="State" class="option selected focus">State</li>';
+                    if (response) {
+                        $.each(response, function (key, value) {
+                            select_div += "<option value='" + value.stateId + "'>" + value.stateName + "</option>";
+                            select_div_append += "<li data-value='" + value.stateId + "' class='option'>" + value.stateName + "</li>";
+                        });
+                        $("#stateId").append(select_div);
+                        select_div_append += "</ul></div>";
+                        $("#stateSelectDiv").append(select_div_append);
+                    }
+                    else {
+                    }
+                },
+                error: function (returnval) {
+                    console.log("Na error be this o...!!!");
+                }
+            });
+        }
+	    $('.form_date').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+		    autoclose: 1,
+		    todayHighlight: 1,
+		    startView: 2,
+		    minView: 2,
+		    forceParse: 0
+        });
+    </script>
+}

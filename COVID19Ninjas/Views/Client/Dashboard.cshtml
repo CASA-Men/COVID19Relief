@@ -1,0 +1,130 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "My Dashboard";
+    Layout = "~/Views/Shared/_ClientLayout.cshtml";
+}
+
+    <main class="main">
+        <section class="promo-primary promo-primary--shop">
+            <picture>
+                <source srcset="~/Template/img/promo_2.jpg" media="(min-width: 992px)" />
+                <img class="img--bg" src="~/Template/img/promo_2.jpg" alt="img" />
+            </picture>
+            <div class="promo-primary__description"> <span></span></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="align-container">
+                            <div class="align-container__item">
+                                <span class="promo-primary__pre-title">Welcome</span>
+                                <h1 class="promo-primary__title"><span>My</span> <span>Dashboard</span></h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section start-->
+        <section class="section background--brown">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="mb-5">Registration Status</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="tabs vertical-tabs">
+                            <ul class="vertical-tabs__header">
+                                <li><a href="#tab-application"><span><i class="fa fa-edit text-primary"></i> &nbsp;Application </span></a></li>
+                                <li><a href="#tab-validation"><span><i class="fa fa-warning text-primary"></i> &nbsp;Validation </span></a></li>
+                                <li><a href="#tab-proof-income"><span><i class="fa fa-money text-primary"></i> &nbsp;Proof of Income</span></a></li>
+                                <li><a href="#tab-pproof-identity"><span><i class="fa fa-id-card text-primary"></i> &nbsp;Proof of Identity</span></a></li>
+                            </ul>
+                            <div class="vertical-tabs__content">
+                                <div class="vertical-tabs__item" id="tab-application">
+                                    <p>Application Form Completed &nbsp;<span class="badge badge-success">Yes  &nbsp;<i class="fa fa-check"></i></span></p>
+                                    <hr />
+                                    <p>You have successfully completed the application form. Kindly proceed.</p>
+                                    <p style="color:#f9f7f6">Thresher shark rudd African lungfish silverside, Red salmon rockfish grunion, garpike zebra danio king-of-the-salmon banjo catfish. Sea chub demoiselle whalefish zebra lionfish mud cat pelican eel.</p>
+                                </div>
+                                <div class="vertical-tabs__item" id="tab-validation">
+                                    <div id="PaymentMadeForValidations" class="mb-5">
+                                        <p>
+                                            Kindly ensure all sections are completely validated before proceeding. Click button below to enable validation.
+                                        </p>
+                                        <!-- Button trigger modal -->
+                                        <p>
+                                            <button type="button" class="button button--primary" data-toggle="modal" data-target="#enableValidationModal">
+                                                Enable Validation &nbsp;<i class="fa fa-arrow-right"></i>
+                                            </button>
+                                        </p>
+
+                                    </div>
+                                    <div class="validation-box disabled">
+                                        <p>Email Validated &nbsp;<span class="badge badge-success">Yes  &nbsp;<i class="fa fa-check"></i></span></p>
+                                        <hr />
+
+                                        <p>
+                                            BVN Validated &nbsp;<span class="badge badge-danger">No &nbsp;<i class="fa fa-times"></i></span>
+                                            <a href="" class="btn-validate pull-right">Validate Now &nbsp;<i class="fa fa-arrow-right"></i></a>
+                                        </p>
+                                        <hr />
+
+                                        <p>
+                                            Phone Number Validated &nbsp;<span class="badge badge-danger">No &nbsp;<i class="fa fa-times"></i></span>
+                                            <a href="" class="btn-validate pull-right">Validate Now &nbsp;<i class="fa fa-arrow-right"></i></a>
+                                        </p>
+                                        <hr />
+
+                                        <p>
+                                            Account Number Validated &nbsp;<span class="badge badge-danger">No &nbsp;<i class="fa fa-times"></i></span>
+                                            <a href="" class="btn-validate pull-right">Validate Now &nbsp;<i class="fa fa-arrow-right"></i></a>
+                                        </p>
+                                        <hr />
+                                    </div>
+                                    <p style="color:#f9f7f6">Thresher shark rudd African lungfish silverside, Red salmon rockfish grunion, garpike zebra danio king-of-the-salmon banjo catfish. Sea chub demoiselle whalefish zebra lionfish mud cat pelican eel.</p>
+                                </div>
+                                <div class="vertical-tabs__item" id="tab-proof-income">
+                                    <p>Proof of Income uploaded &nbsp;<span class="badge badge-danger">No  &nbsp;<i class="fa fa-times"></i></span></p>
+                                    <hr />
+                                    <p>You are yet to upload proof of income. Click the button below to upload document.</p>
+                                    <p>
+                                        <button type="button" class="button button--primary" data-toggle="modal" data-target="#enableValidationModal">
+                                            <i class="fa fa-upload"></i> &nbsp;Upload Document
+                                        </button>
+                                    </p>
+                                    <p style="color:#f9f7f6">Thresher shark rudd African lungfish silverside, Red salmon rockfish grunion, garpike zebra danio king-of-the-salmon banjo catfish. Sea chub demoiselle whalefish zebra lionfish mud cat pelican eel.</p>
+                                </div>
+                                <div class="vertical-tabs__item" id="tab-pproof-identity">
+                                    <p>Proof of Identity uploaded &nbsp;<span class="badge badge-danger">No  &nbsp;<i class="fa fa-times"></i></span></p>
+                                    <hr />
+                                    <p>You are yet to upload proof of identity. Click the button below to upload document.</p>
+                                    <p>
+                                        <button type="button" class="button button--primary" data-toggle="modal" data-target="#enableValidationModal">
+                                            <i class="fa fa-upload"></i> &nbsp;Upload Document
+                                        </button>
+                                    </p>
+                                    <p style="color:#f9f7f6">Thresher shark rudd African lungfish silverside, Red salmon rockfish grunion, garpike zebra danio king-of-the-salmon banjo catfish. Sea chub demoiselle whalefish zebra lionfish mud cat pelican eel.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section end-->
+        <!-- bottom bg start-->
+        <section class="bottom-background background--brown">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="bottom-background__img"><img src="~/Template/img//bottom-bg.png" alt="img" /></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- bottom bg end-->
+    </main>

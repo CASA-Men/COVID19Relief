@@ -1,0 +1,100 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = ":: Home :: ";
+}
+
+    <main class="main">
+        <!-- promo start-->
+        <section class="promo">
+            <div class="promo-slider">
+                <div class="promo-slider__item promo-slider__item--style-2">
+                    <picture>
+                        <source srcset="~/Template/img/promo_2.jpg" media="(min-width: 835px)" />
+                        <source srcset="~/Template/img/834promo_2.jpg" media="(min-width: 376px)" />
+                        <img class="img--bg" src="~/Template/img/375promo_2.jpg" alt="img" />
+                    </picture>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-7">
+                                <div class="align-container">
+                                    <div class="align-container__item">
+                                        <div class="promo-slider__wrapper-1">
+                                            <h2 class="promo-slider__title"><span>We are Helping</span><br /><span>around the country.</span></h2>
+                                        </div>
+                                        <div class="promo-slider__wrapper-2">
+                                            <p class="promo-slider__subtitle">The Relief Register seeks to capture relevant information especially of those affected by the COVID-19 Pandemic. </p>
+                                        </div>
+                                        <div class="promo-slider__wrapper-3"><a class="button promo-slider__button button--primary" asp-area="Pages" asp-page="/Register">Register</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- promo pannel start-->
+            <div class="promo-pannel">
+                <div class="promo-pannel__email">
+                    <p class="promo-pannel__title">Need Help?</p><a class="promo-pannel__link" href="mailto:support@reliefregister.ng">support@reliefregister.ng</a>
+                </div>
+            </div>
+            <!-- promo pannel end-->
+            <!-- slider nav start-->
+            <div class="slider__nav slider__nav--promo">
+                <div class="promo-slider__count"></div>
+                <div class="slider__arrows">
+                    <div class="slider__prev">
+                        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    </div>
+                    <div class="slider__next">
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- slider nav end-->
+        </section>
+        <!-- promo end-->
+        <!-- about us start-->
+        <section class="section about-us" id="about">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="heading heading--primary">
+                            <span class="heading__pre-title">About Us</span>
+                            <h2 class="heading__title"><span>Help is Our</span> <span>Main Goal</span></h2>
+                        </div>
+                        <p><strong>Nigeria is overwhelmingly a country of salaried workers as well as small businesses, petty traders and micro-firms.</strong></p>
+                        <p>These are particularly vulnerable to the effects of the COVID-19 pandemic. Few have the savings to cover things like rent and pay wages as lockdowns across the continent see businesses close, custom dry up and employees let go.</p>
+                        <p>Employees and Small business owners are quite terrified by what is going on right now -- the uncertainty of how long this lockdown will continue and how long the economy will take to rebound after this.</p>
+                        <a class="button button--primary" asp-area="Pages" asp-page="/Register">Sign up Today</a>
+                    </div>
+                    <div class="col-lg-6 col-xl-5 offset-xl-1">
+                        <div class="info-box">
+                            <img class="img--layout" src="~/Template/img/about_layout.png" alt="img" /><img class="img--bg" src="~/Template/img/about-us.jpg" alt="img" />
+                            <h4 class="info-box__title">We are here to be of assistance.</h4>
+                            <p>Nigeria is overwhelmingly a country of salaried workers as well as small businesses, petty traders and micro-firms, with an estimated 95% of enterprises falling into this category. We understand this uncertainly and are here to be of assistance.</p><a class="info-box__link" asp-area="Pages" asp-page="/Contact">Contact us Today</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- about us end-->
+        <!-- subscribe start-->
+        <section class="subscribe">
+            <div class="container">
+                <div class="row align-items-end">
+                    <div class="col-lg-4">
+                        <h2 class="subscribe__title">Subscribe.</h2>
+                    </div>
+                    <div class="col-lg-8">
+                        <form class="subscribe-form" action="javascript:void(0);">
+                            <input class="subscribe-form__input" type="email" name="email" placeholder="Enter your E-mail" required="required" />
+                            <input class="subscribe-form__submit" type="submit" value="Submit" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- subscribe end-->
+    </main>
