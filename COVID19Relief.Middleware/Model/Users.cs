@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace COVID19Relief.Middleware.Model
@@ -8,6 +9,7 @@ namespace COVID19Relief.Middleware.Model
         public Users()
         {
             Bvndetails = new HashSet<Bvndetails>();
+            PaymentDetails = new HashSet<PaymentDetails>();
             SalaryDetails = new HashSet<SalaryDetails>();
             SalaryWorkersDetails = new HashSet<SalaryWorkersDetails>();
             SelfEmployedWorkersDetails = new HashSet<SelfEmployedWorkersDetails>();
@@ -33,7 +35,14 @@ namespace COVID19Relief.Middleware.Model
         public string DocumentIdNumber { get; set; }
         public int? SpouseUniqueNumber { get; set; }
 
+        [JsonIgnore]
+        public byte[] PasswordHash { get; set; }
+        [JsonIgnore]
+
+        public byte[] PasswordSalt { get; set; }
+
         public virtual ICollection<Bvndetails> Bvndetails { get; set; }
+        public virtual ICollection<PaymentDetails> PaymentDetails { get; set; }
         public virtual ICollection<SalaryDetails> SalaryDetails { get; set; }
         public virtual ICollection<SalaryWorkersDetails> SalaryWorkersDetails { get; set; }
         public virtual ICollection<SelfEmployedWorkersDetails> SelfEmployedWorkersDetails { get; set; }

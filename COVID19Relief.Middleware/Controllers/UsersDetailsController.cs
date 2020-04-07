@@ -50,6 +50,21 @@ namespace COVID19Relief.Middleware.Controllers
             return users;
         }
 
+        // GET: api/UsersDetails/5
+        [HttpGet]
+        [Route("GetUserDetailsByEmail")]
+        public async Task<ActionResult<Users>> GetUsersByEmail(string email)
+        {
+            var users = await _context.Users.Where(x=>x.Email==email).FirstOrDefaultAsync();
+
+            if (users == null)
+            {
+                return NotFound();
+            }
+
+            return users;
+        }
+
         // PUT: api/UsersDetails/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -84,18 +99,76 @@ namespace COVID19Relief.Middleware.Controllers
             return NoContent();
         }
 
+        // PUT: api/UsersDetails/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        // more details see https://aka.ms/RazorPagesCRUD.
+        //[HttpPut("{id}")]
+        [HttpPut]
+        [Route("EditUserByEmail")]
+        public async Task<IActionResult> PutUsersByEmail(string email, Users users)
+        {
+            if (email != users.Email)
+            {
+                return BadRequest();
+            }
+
+            if (!UsersExistsByEmail(email))
+            {
+                return BadRequest("User does not exist");
+
+            }
+
+            _context.Entry(users).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UsersExistsByEmail(email))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+        }
+
+
+
+
+        public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            if (password == null) throw new ArgumentNullException("password");
+            if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Value cannot be empty or whitespace only string.", "password");
+
+            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+
         // POST: api/UsersDetails
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         //EnableCors]
         [HttpPost]
         [Route("CreateUser")]
-        public async Task<ActionResult<Users>> PostUsers(Users users)
+        public async Task<ActionResult<Users>> PostUsers(Users users, string password)
         {
             try
             {
-                _logger.LogInformation("1. got user @users", users);
-                _logger.LogInformation($"2. got users {Newtonsoft.Json.JsonConvert.SerializeObject(users)}");
+                _logger.LogInformation($" got users {Newtonsoft.Json.JsonConvert.SerializeObject(users)}");
+
+                byte[] passwordHash, passwordSalt;
+                CreatePasswordHash(password, out passwordHash, out passwordSalt);
+
                 _context.Users.Add(users);
                 await _context.SaveChangesAsync();
 
@@ -130,6 +203,11 @@ namespace COVID19Relief.Middleware.Controllers
         private bool UsersExists(int id)
         {
             return _context.Users.Any(e => e.UsersId == id);
+        }
+
+        private bool UsersExistsByEmail(string email)
+        {
+            return _context.Users.Any(e => e.Email == email);
         }
     }
 }
