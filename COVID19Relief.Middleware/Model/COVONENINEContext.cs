@@ -17,6 +17,7 @@ namespace COVID19Relief.Middleware.Model
 
         public virtual DbSet<Banks> Banks { get; set; }
         public virtual DbSet<Bvndetails> Bvndetails { get; set; }
+        public virtual DbSet<PaymentDetails> PaymentDetails { get; set; }
         public virtual DbSet<SalaryDetails> SalaryDetails { get; set; }
         public virtual DbSet<SalaryWorkersDetails> SalaryWorkersDetails { get; set; }
         public virtual DbSet<SelfEmployedWorkersDetails> SelfEmployedWorkersDetails { get; set; }
@@ -29,7 +30,7 @@ namespace COVID19Relief.Middleware.Model
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=66.226.79.101;Database=COVONENINE;user id=NimbleXDev;password=D@t@b@s3C0n_!@$;Persist Security Info=False;Trusted_Connection=false;");
+                optionsBuilder.UseSqlServer("Server=66.226.79.101;Database=COVONENINE;user id=NimbleXDev;password=D@t@b@s3C0n_!@$;");
             }
         }
 
@@ -137,6 +138,25 @@ namespace COVID19Relief.Middleware.Model
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_User_BVNDetails");
+            });
+
+            modelBuilder.Entity<PaymentDetails>(entity =>
+            {
+                entity.Property(e => e.PaymentDetailsId).ValueGeneratedNever();
+
+                entity.Property(e => e.CreatedOn)
+                    .HasColumnName("CReatedOn")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.PaymentRef)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.PaymentDetails)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Users_Payment");
             });
 
             modelBuilder.Entity<SalaryDetails>(entity =>

@@ -32,22 +32,24 @@ namespace COVID19Relief.Middleware
 
 
             // Add service and create Policy with options
-            services.AddCors(
-                options =>
-                {
-                    options.AddPolicy(MyAllowSpecificOrigins,
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                    });
-                }
-                );
+            //services.AddCors(
+            //    options =>
+            //    {
+            //        options.AddPolicy(MyAllowSpecificOrigins,
+            //        builder =>
+            //        {
+            //            builder.AllowAnyOrigin()
+            //            .AllowAnyMethod()
+            //            .AllowAnyHeader();
+            //        });
+            //    }
+            //    );
 
             services.AddControllers().AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
+
+            services.AddCors();
             //var connection = "Server=66.226.79.101;Initial Catalog=COVONENINE;User Id=NimbleXDev;Password=D@t@b@s3C0n_!@$;";
             var connection = Configuration.GetConnectionString("CovOneNineMsSQLDb");
             services.AddDbContext<COVONENINEContext>(options => options.UseSqlServer(connection));
@@ -80,7 +82,10 @@ namespace COVID19Relief.Middleware
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseCors(MyAllowSpecificOrigins);
+            //app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors(
+                options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()
+                ); ;
 
             app.UseAuthorization();
 
