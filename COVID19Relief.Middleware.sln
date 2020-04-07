@@ -4,8 +4,6 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "COVID19Relief.Middleware", "COVID19Relief.Middleware\COVID19Relief.Middleware.csproj", "{915A3FC4-EF7F-4CDF-85C6-B73400F8141E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "COVID19Ninjas", "..\COVID19Ninjas\COVID19Ninjas\COVID19Ninjas.csproj", "{FC1BA777-271D-47FE-8FA6-358C805B98D5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,10 +14,6 @@ Global
 		{915A3FC4-EF7F-4CDF-85C6-B73400F8141E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{915A3FC4-EF7F-4CDF-85C6-B73400F8141E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{915A3FC4-EF7F-4CDF-85C6-B73400F8141E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC1BA777-271D-47FE-8FA6-358C805B98D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC1BA777-271D-47FE-8FA6-358C805B98D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC1BA777-271D-47FE-8FA6-358C805B98D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC1BA777-271D-47FE-8FA6-358C805B98D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
