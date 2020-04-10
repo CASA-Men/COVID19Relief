@@ -587,7 +587,7 @@
 
         function createUser() {
             // Get the base API URI
-            let baseUrl = "https://localhost:44382/api/Users/CreateUser";
+            let baseUrl = "https://demoapi.reliefregister.ng/api/Users/CreateUser";
             let data = JSON.stringify(appData.user);
 
             // Make Ajax call here
@@ -612,7 +612,7 @@
         }
 
         function getBanks() {
-            let baseUrl = "https://localhost:44382/api/Banks";
+            let baseUrl = "https://demoapi.reliefregister.ng/api/Banks";
             $.ajax({
                 url: baseUrl,
                 type: 'GET',
@@ -639,7 +639,7 @@
         }
 
         function getStates() {
-            let baseUrl = "https://localhost:44382/api/StatesTables";
+            let baseUrl = "https://demoapi.reliefregister.ng/api/StatesTables";
             $.ajax({
                 url: baseUrl,
                 type: 'GET',
