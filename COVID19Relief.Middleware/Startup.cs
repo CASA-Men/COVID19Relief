@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using COVID19Relief.Middleware.Extensions;
 using COVID19Relief.Middleware.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -62,7 +63,7 @@ namespace COVID19Relief.Middleware
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,ILogger logger)
         {
             //app.UseCors("AllowOrigin");
             // global policy - assign here or on each controller
@@ -86,6 +87,7 @@ namespace COVID19Relief.Middleware
             app.UseCors(
                 options => options.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()
                 ); ;
+            app.ConfigureExceptionHandler(logger);
 
             app.UseAuthorization();
 
