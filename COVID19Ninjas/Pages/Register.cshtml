@@ -295,6 +295,7 @@
     <script>
         let appData = {};
         let option = $("#IsEmploymentStatus");
+        let baseApiUrl = "https://demoapi.reliefregister.ng/api";
         $(document).ready(function () {
             // Get all the banks and populate the dropdown list
             getBanks();
@@ -587,7 +588,7 @@
 
         function createUser() {
             // Get the base API URI
-            let baseUrl = "https://demoapi.reliefregister.ng/api/Users/CreateUser";
+            let baseUrl = baseApiUrl + "/Users/CreateUser";
             let data = JSON.stringify(appData.user);
 
             // Make Ajax call here
@@ -612,7 +613,7 @@
         }
 
         function getBanks() {
-            let baseUrl = "https://demoapi.reliefregister.ng/api/Banks";
+            let baseUrl = baseApiUrl + "/Banks";
             $.ajax({
                 url: baseUrl,
                 type: 'GET',
@@ -639,7 +640,7 @@
         }
 
         function getStates() {
-            let baseUrl = "https://demoapi.reliefregister.ng/api/StatesTables";
+            let baseUrl = baseApiUrl + "/StatesTables";
             $.ajax({
                 url: baseUrl,
                 type: 'GET',
