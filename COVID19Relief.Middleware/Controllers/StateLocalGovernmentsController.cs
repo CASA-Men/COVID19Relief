@@ -41,6 +41,21 @@ namespace COVID19Relief.Middleware.Controllers
             return stateLocalGovernment;
         }
 
+        
+        [HttpGet]
+        [Route("GetStateLocalGovernmentByStateId")]
+        public async Task<ActionResult<IEnumerable<StateLocalGovernment>>> GetStateLocalGovernmentByStateId(short id)
+        {
+            var stateLocalGovernment = await _context.StateLocalGovernment.Where(x=>x.StateId.Equals(id)).ToListAsync();
+
+            if (stateLocalGovernment == null)
+            {
+                return NotFound();
+            }
+
+            return stateLocalGovernment;
+        }
+
         // PUT: api/StateLocalGovernments/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
