@@ -37,9 +37,13 @@ namespace COVID19Relief.Middleware.Model
 
         [JsonIgnore]
         public byte[] PasswordHash { get; set; }
+
         [JsonIgnore]
 
         public byte[] PasswordSalt { get; set; }
+        public string MaritalStatus { get; set; }
+        public int? NoOfDependents { get; set; }
+        public int? LocalGovernmentId { get; set; }
 
         public virtual ICollection<Bvndetails> Bvndetails { get; set; }
         public virtual ICollection<PaymentDetails> PaymentDetails { get; set; }

@@ -17,10 +17,12 @@ namespace COVID19Relief.Middleware.Model
 
         public virtual DbSet<Banks> Banks { get; set; }
         public virtual DbSet<Bvndetails> Bvndetails { get; set; }
+        public virtual DbSet<IdentityTypes> IdentityTypes { get; set; }
         public virtual DbSet<PaymentDetails> PaymentDetails { get; set; }
         public virtual DbSet<SalaryDetails> SalaryDetails { get; set; }
         public virtual DbSet<SalaryWorkersDetails> SalaryWorkersDetails { get; set; }
         public virtual DbSet<SelfEmployedWorkersDetails> SelfEmployedWorkersDetails { get; set; }
+        public virtual DbSet<StateLocalGovernment> StateLocalGovernment { get; set; }
         public virtual DbSet<StatesTable> StatesTable { get; set; }
         public virtual DbSet<Title> Title { get; set; }
         public virtual DbSet<Users> Users { get; set; }
@@ -29,8 +31,8 @@ namespace COVID19Relief.Middleware.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=40.122.172.154;Database=COVONENINE;user id=ReliefRegAdmin;password=M$SQLMu11@123$;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=40.122.172.154;Database=COVONENINE;user id=reliefMgr;password=reliefMgr2020;");
             }
         }
 
@@ -140,6 +142,13 @@ namespace COVID19Relief.Middleware.Model
                     .HasConstraintName("FK_User_BVNDetails");
             });
 
+            modelBuilder.Entity<IdentityTypes>(entity =>
+            {
+                entity.Property(e => e.IdentityName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
             modelBuilder.Entity<PaymentDetails>(entity =>
             {
                 entity.Property(e => e.PaymentDetailsId).ValueGeneratedNever();
@@ -175,7 +184,7 @@ namespace COVID19Relief.Middleware.Model
             modelBuilder.Entity<SalaryWorkersDetails>(entity =>
             {
                 entity.HasKey(e => e.SalaryWorkersDetaildId)
-                    .HasName("PK__SalaryWo__1DBEF810780D63D0");
+                    .HasName("PK__SalaryWo__1DBEF810E920B61A");
 
                 entity.Property(e => e.ActiveEmail)
                     .IsRequired()
@@ -261,6 +270,25 @@ namespace COVID19Relief.Middleware.Model
                     .HasConstraintName("FK_Users_SelfEmployedWorkersDetails");
             });
 
+            modelBuilder.Entity<StateLocalGovernment>(entity =>
+            {
+                entity.Property(e => e.StateLocalGovernmentId).ValueGeneratedNever();
+
+                entity.Property(e => e.CreatedBy)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.LastModifiedDate)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.LocalGovernmentName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.ModifiedBy).HasMaxLength(50);
+            });
+
             modelBuilder.Entity<StatesTable>(entity =>
             {
                 entity.HasKey(e => e.StateId);
@@ -331,6 +359,10 @@ namespace COVID19Relief.Middleware.Model
                 entity.Property(e => e.LastName)
                     .IsRequired()
                     .HasMaxLength(50);
+
+                entity.Property(e => e.MaritalStatus)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.MiddleName).HasMaxLength(50);
 
