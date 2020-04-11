@@ -56,30 +56,50 @@
                                         <div class="col-lg-6">
                                             <input class="form__field" type="email" id="email" placeholder="Email Address *" />
                                         </div>
-                                        <div id="bankSelectDiv" class="col-lg-6">
-                                            <div id="bankId" style="display:none;"></div>
+
+                                        <div class="col-lg-6">
+                                            <select id="bankId" class="form__field">
+                                                <option>Select Bank</option>
+                                            </select>
                                         </div>
                                         <div class="col-lg-6">
                                             <input class="form__field" type="text" id="accountNumber" placeholder="Account Number *" />
                                         </div>
-                                        <div id="stateSelectDiv" class="col-lg-6">
-                                            <div id="stateId" style="display:none;"></div>
-                                        </div>
+
                                         <div class="col-lg-6">
-                                            <select class="form__select" id="identityDocumentType">
-                                                <option>Identity DocumentType</option>
-                                                <option value="Identity DocumentType 1">Identity DocumentType 1</option>
-                                                <option value="Identity DocumentType 2">Identity DocumentType 2</option>
-                                                <option value="Identity DocumentType 3">Identity DocumentType 3</option>
-                                                <option value="Identity DocumentType 4">Identity DocumentType 4</option>
-                                                <option value="Identity DocumentType 5">Identity DocumentType 5</option>
+                                            <select id="stateId" class="form__field">
+                                                <option>Select State</option>
                                             </select>
                                         </div>
                                         <div class="col-lg-6">
-                                            <input class="form__field" type="text" id="documentIdNumber" placeholder="Document Id Number *" />
+                                            <select id="lgaId" class="form__field">
+                                                <option>Select L.G.A</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <select id="identityTypesId" class="form__field">
+                                                <option>Select identity Type</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <input class="form__field" type="text" id="documentIdNumber" placeholder="Document Id Number " />
                                         </div>
                                         <div class="col-lg-6">
-                                            <input class="form__field" type="text" id="spouseUniqueNumber" placeholder="Spouse Unique Number *" />
+                                            <select class="form__select" id="maritalStatus">
+                                                <option>Marital Status</option>
+                                                <option value="Single">Single</option>
+                                                <option value="Married">Married</option>
+                                                <option value="Divorced">Divorced</option>
+                                                <option value="Widowed">Widowed</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input class="form__field" type="text" id="noOfdependents" placeholder="Number of dependents " />
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input class="form__field" type="text" id="spouseUniqueNumber" placeholder="Spouse Unique Number " />
                                         </div>
                                         <div class="col-12" style="margin-bottom:20px !important;">
                                             <button class="form__submit" type="submit" id="gotoStep2">Next</button>
@@ -91,9 +111,9 @@
                                     <div class="row offset-30">
                                         <div class="col-lg-6">
                                             <select class="form__select" id="IsEmploymentStatus">
-                                                <option>Are you currently employed?</option>
-                                                <option value="Yes">Yes</option>
-                                                <option value="No">No</option>
+                                                <option>Are you a salaried worker or self employed?</option>
+                                                <option value="Yes">I'm a salaried worker</option>
+                                                <option value="No">I'm self-employed</option>
                                             </select>
                                         </div>
                                         <div id="salaryWorkersDetails" class="row" style="padding:15px !important; display: none">
@@ -120,16 +140,16 @@
                                                 <input class="form__field" type="text" id="employerRcNoOrBrNo" placeholder="Employer RcNo Or BrNo" />
                                             </div>
                                             @*<div class="col-lg-6">
-                                                <input class="form__field " type="text" id="" placeholder="Date of Employment" />
-                                            </div>*@
+                                                    <input class="form__field " type="text" id="" placeholder="Date of Employment" />
+                                                </div>*@
 
                                             <div class="col-lg-6 input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dateOfEmployment" data-link-format="yyyy-mm-dd">
                                                 <input class="form__field " type="text" placeholder="Date of Employment" value="" readonly />
-                                                <span class="input-group-addon"dateOfEmployment><span class="glyphicon glyphicon-calendar"></span></span>
+                                                <span class="input-group-addon" dateOfEmployment><span class="glyphicon glyphicon-calendar"></span></span>
                                             </div>
                                             <input type="hidden" id="dateOfEmployment" value="" />
 
-                                            <div class="col-lg-6 input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dateOfLeaving1" data-link-format="yyyy-mm-dd">
+                                            <div id="dateOfLeaving_1" class="col-lg-6 input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dateOfLeaving1" data-link-format="yyyy-mm-dd">
                                                 <input class="form__field " type="text" placeholder="Date of leaving" value="" readonly />
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                             </div>
@@ -296,11 +316,14 @@
         let appData = {};
         let option = $("#IsEmploymentStatus");
         let baseApiUrl = "https://demoapi.reliefregister.ng/api";
+
         $(document).ready(function () {
             // Get all the banks and populate the dropdown list
             getBanks();
             // Get all the states and populate the dropdown list
             getStates();
+            // Get all the Identity types to populate the dropdown list
+            getIdentityTypes();
             // Assign values to the appData Object
             appData = {
                 salaryWorkers: {
@@ -383,7 +406,21 @@
                     identityDocumentType: "string",
                     documentIdNumber: "string",
                     spouseUniqueNumber: 0,
+                    passwordHash: "string",
+                    passwordSalt: "string",
+                    maritalStatus: "string",
+                    noOfDependents: 0,
+                    localGovernmentId: 0,
                     bvndetails: [],
+                    paymentDetails: [
+                        {
+                            paymentDetailsId: 0,
+                            userId: 0,
+                            paymentRef: "string",
+                            amount: 0,
+                            createdOn: "2020-04-11T16:20:41.056Z"
+                        }
+                    ],
                     salaryDetails: [],
                     salaryWorkersDetails: [],
                     selfEmployedWorkersDetails: [],
@@ -394,6 +431,7 @@
             appData.user.salaryDetails = [];
             appData.user.bvndetails = [];
             appData.user.selfEmployedWorkersDetails = [];
+
             // Get the createdon date
             var date = Date.now();
             const formatedDate = dayjs(date).format("YYYY-MM-DD");
@@ -409,15 +447,18 @@
                 appData.user.accountNumber = $("#accountNumber").val();
                 appData.user.bankId = $("#bankId option:selected").val();
                 appData.user.stateId = $("#stateId option:selected").val();
-                appData.user.identityDocumentType = $("#identityDocumentType").val();
+                appData.user.identityDocumentType = $("#identityTypesId option:selected").val();
                 appData.user.documentIdNumber = $("#documentIdNumber").val();
                 appData.user.spouseUniqueNumber = $("#spouseUniqueNumber").val();
+                appData.user.maritalStatus = $("#maritalStatus option:selected").val();
+                appData.user.noOfDependents = $("#noOfdependents").val();
+                appData.user.localGovernmentId = $("#lgaId option:selected").val();
                 appData.user.createdOn = formatedDate;
                 appData.user.createdBy = appData.user.firstName + " " + appData.user.lastName;
 
                 // Validate the form fields
                 let isValid = true;
-                $('#firstName, #middleName, #lastName, #email, #phoneNumber, #accountNumber, #documentIdNumber, #spouseUniqueNumber').each(function () {
+                $('#firstName, #lastName, #email, #phoneNumber, #accountNumber, #documentIdNumber, #maritalStatus, #bankId, #stateId, #noOfdependents, #identityDocumentType').each(function () {
                     if ($.trim($(this).val()) == '') {
                         isValid = false;
                         $(this).css({
@@ -469,6 +510,7 @@
                     });
 
                     $("#salaryWorkersDetails").hide();
+                    $("#dateOfLeaving1 #dateOfLeaving_1").hide();
                     $("#selfEmployedWorkersDetails").show();
                     $("#divBackToStep1gotoStep3").show();
                     $("#empCategory").html("(self-employed worker)");
@@ -574,9 +616,12 @@
                 }
             });
 
-            //$("#sendEmailActivationLink").on('click', function () {
-            //    // Send activation link
-            //});
+            $("#stateId").on('change', function () {
+                debugger
+                // get the value of the selected item
+                let selectedItem = $("#stateId option:selected").val();
+                getLGAs(selectedItem);
+            });
 
             $("#gotoStep4").on('click', function () {
                 // ThankyouPage
@@ -620,15 +665,11 @@
                 dataType: "json",
                 success: function (response) {
                     let select_div = "";
-                    let select_div_append = '<div class="nice-select form__select" tabindex="0"><span class="current">Bank</span><ul class="list"><li data-value="Bank" class="option selected focus">Bank</li>';
                     if (response) {
                         $.each(response, function (key, value) {
                             select_div += "<option value='" + value.bankId + "'>" + value.bankName + "</option>";
-                            select_div_append += "<li data-value='" + value.bankId + "' class='option'>" + value.bankName + "</li>";
                         });
                         $("#bankId").append(select_div);
-                        select_div_append += "</ul></div>";
-                        $("#bankSelectDiv").append(select_div_append);
                     }
                     else {
                     }
@@ -647,15 +688,11 @@
                 dataType: "json",
                 success: function (response) {
                     let select_div = "";
-                    let select_div_append = '<div class="nice-select form__select" tabindex="0"><span class="current">State</span><ul class="list"><li data-value="State" class="option selected focus">State</li>';
                     if (response) {
                         $.each(response, function (key, value) {
                             select_div += "<option value='" + value.stateId + "'>" + value.stateName + "</option>";
-                            select_div_append += "<li data-value='" + value.stateId + "' class='option'>" + value.stateName + "</li>";
                         });
                         $("#stateId").append(select_div);
-                        select_div_append += "</ul></div>";
-                        $("#stateSelectDiv").append(select_div_append);
                     }
                     else {
                     }
@@ -665,15 +702,63 @@
                 }
             });
         }
-	    $('.form_date').datetimepicker({
-            language:  'fr',
+
+        function getLGAs(stateId) {
+            debugger
+            let baseUrl = baseApiUrl + "/StateLocalGovernments/GetStateLocalGovernmentByStateId?id=" + stateId;
+            $.ajax({
+                url: baseUrl,
+                type: 'GET',
+                dataType: "json",
+                success: function (response) {
+                    let select_div = "";
+                    if (response) {
+                        $.each(response, function (key, value) {
+                            select_div += "<option value='" + value.stateLocalGovernmentId + "'>" + value.localGovernmentName + "</option>";
+                        });
+                        $("#lgaId").append(select_div);
+                    }
+                    else {
+                    }
+                },
+                error: function (returnval) {
+                    console.log("Na error be this o...!!!");
+                }
+            });
+        }
+
+        function getIdentityTypes() {
+            let baseUrl = baseApiUrl + "/IdentityTypes";
+            $.ajax({
+                url: baseUrl,
+                type: 'GET',
+                dataType: "json",
+                success: function (response) {
+                    let select_div = "";
+                    if (response) {
+                        $.each(response, function (key, value) {
+                            select_div += "<option value='" + value.identityTypesId + "'>" + value.identityName + "</option>";
+                        });
+                        $("#identityTypesId").append(select_div);
+                    }
+                    else {
+                    }
+                },
+                error: function (returnval) {
+                    console.log("Na error be this o...!!!");
+                }
+            });
+        }
+
+        $('.form_date').datetimepicker({
+            language: 'fr',
             weekStart: 1,
-            todayBtn:  1,
-		    autoclose: 1,
-		    todayHighlight: 1,
-		    startView: 2,
-		    minView: 2,
-		    forceParse: 0
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
         });
     </script>
 }
