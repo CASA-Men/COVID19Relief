@@ -30,7 +30,7 @@ namespace COVID19Relief.Middleware.Model
             if (!optionsBuilder.IsConfigured)
             {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=40.122.172.154;Database=COVONENINE;user id=Lolade;password=0l01@d3@123$;");
+                optionsBuilder.UseSqlServer("Server=40.122.172.154;Database=COVONENINE;user id=ReliefRegAdmin;password=M$SQLMu11@123$;");
             }
         }
 
