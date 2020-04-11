@@ -44,9 +44,9 @@ namespace COVID19Relief.Middleware.Controllers
         
         [HttpGet]
         [Route("GetStateLocalGovernmentByStateId")]
-        public async Task<ActionResult<IEnumerable<StateLocalGovernment>>> GetStateLocalGovernmentByStateId(short id)
+        public async Task<ActionResult<IEnumerable<StateLocalGovernment>>> GetStateLocalGovernmentByStateId(int id)
         {
-            var stateLocalGovernment = await _context.StateLocalGovernment.Where(x=>x.StateId.Equals(id)).ToListAsync();
+            var stateLocalGovernment = await _context.StateLocalGovernment.Where(x=>x.StateId == id).ToListAsync();
 
             if (stateLocalGovernment == null)
             {
