@@ -1,0 +1,63 @@
+﻿@model LoginViewModel
+@using COVID19Ninjas.ViewModels
+@{
+    ViewData["Title"] = ":: LOGIN :: ";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+    <main class="main">
+        <!-- promo start-->
+        <section class="promo">
+            <div class="promo-slider">
+                <div class="promo-slider__item promo-slider__item--style-2">
+                    <picture>
+                        <img class="img--bg" src="~/Template/img/login.jpg" alt="img" />
+                    </picture>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-7">
+                                <div class="align-container">
+                                    <div class="align-container__item">
+                                        <div class="">
+                                            <div class="promo-slider__wrapper-">
+                                                <h1 class="promo-slider__title"><span>Login</span></h1>
+                                            </div>
+                                            <form class="form" action="javascript:void(0);">
+                                                <p class="form__text">Enter your username/email address and password.</p>
+                                                <div class="row mt-4">
+                                                    <div class="col-lg-8 col-sm-12">
+                                                        <input class="form__field" type="text" name="first-name" placeholder="Username/Email Address *" required="required" />
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-lg-8 col-sm-12">
+                                                        <input class="form__field" type="password" name="last-name" placeholder="Password *" required="required" />
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-4">
+                                                    <div class="col-lg-4">
+                                                        <button class="button button--primary" type="submit"><i class="fa fa-sign-in"></i> &nbsp;Sign In</button>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <p><a asp-controller="Account" asp-action="ForgotPassword" class="aside-menu__link text-warning pull-right">Forgot Password?</a></p>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- promo pannel start-->
+            <div class="promo-pannel">
+                <div class="promo-pannel__email">
+                    <p class="promo-pannel__title">Need Help?</p><a class="promo-pannel__link" href="mailto:support@reliefregister.ng">support@reliefregister.ng</a>
+                </div>
+            </div>
+            <!-- promo pannel end-->
+        </section>
+        <!-- promo end-->
+    </main>
