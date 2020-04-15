@@ -18,6 +18,7 @@ namespace COVID19Relief.Middleware.Model
         public virtual DbSet<Banks> Banks { get; set; }
         public virtual DbSet<Bvndetails> Bvndetails { get; set; }
         public virtual DbSet<IdentityTypes> IdentityTypes { get; set; }
+        public virtual DbSet<OtpTable> OtpTable { get; set; }
         public virtual DbSet<PaymentDetails> PaymentDetails { get; set; }
         public virtual DbSet<SalaryDetails> SalaryDetails { get; set; }
         public virtual DbSet<SalaryWorkersDetails> SalaryWorkersDetails { get; set; }
@@ -32,7 +33,7 @@ namespace COVID19Relief.Middleware.Model
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=40.122.172.154;Database=COVONENINE;user id=reliefMgr;password=reliefMgr2020;");
+                optionsBuilder.UseSqlServer("Server=40.122.172.154;Database=COVONENINE;user id=reliefmgr;password=reliefMgr2020;");
             }
         }
 
@@ -147,6 +148,23 @@ namespace COVID19Relief.Middleware.Model
                 entity.Property(e => e.IdentityName)
                     .IsRequired()
                     .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<OtpTable>(entity =>
+            {
+                entity.Property(e => e.OtpTableId).ValueGeneratedNever();
+
+                entity.Property(e => e.Code)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.DateInserted).HasColumnType("datetime");
+
+                entity.Property(e => e.DateOtpverified).HasColumnType("datetime");
+
+                entity.Property(e => e.UserEmail)
+                    .IsRequired()
+                    .HasMaxLength(250);
             });
 
             modelBuilder.Entity<PaymentDetails>(entity =>

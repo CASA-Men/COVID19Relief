@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace COVID19Relief.Middleware.Model
@@ -34,12 +33,7 @@ namespace COVID19Relief.Middleware.Model
         public string IdentityDocumentType { get; set; }
         public string DocumentIdNumber { get; set; }
         public int? SpouseUniqueNumber { get; set; }
-
-        [JsonIgnore]
         public byte[] PasswordHash { get; set; }
-
-        [JsonIgnore]
-
         public byte[] PasswordSalt { get; set; }
         public string MaritalStatus { get; set; }
         public int? NoOfDependents { get; set; }
