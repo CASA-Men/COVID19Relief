@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "COVID19Ninjas", "COVID19Ninjas\COVID19Ninjas.csproj", "{8BF01CF1-EB12-42D3-BB68-E4C7AFAA7E92}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "COVID19Relief.Middleware", "COVID19Relief.Middleware\COVID19Relief.Middleware.csproj", "{9E06322A-2492-49BB-8011-5753E9FE07E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "COVID19Relief.Middleware", "COVID19Relief.Middleware\COVID19Relief.Middleware.csproj", "{BE29F57F-2121-4E72-BC83-8686C0091FB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{8BF01CF1-EB12-42D3-BB68-E4C7AFAA7E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BF01CF1-EB12-42D3-BB68-E4C7AFAA7E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BF01CF1-EB12-42D3-BB68-E4C7AFAA7E92}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E06322A-2492-49BB-8011-5753E9FE07E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E06322A-2492-49BB-8011-5753E9FE07E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E06322A-2492-49BB-8011-5753E9FE07E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E06322A-2492-49BB-8011-5753E9FE07E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE29F57F-2121-4E72-BC83-8686C0091FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE29F57F-2121-4E72-BC83-8686C0091FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE29F57F-2121-4E72-BC83-8686C0091FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE29F57F-2121-4E72-BC83-8686C0091FB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

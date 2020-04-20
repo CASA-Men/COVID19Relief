@@ -53,7 +53,26 @@
                                     <p>Application Form Completed &nbsp;<span class="badge badge-success">Yes  &nbsp;<i class="fa fa-check"></i></span></p>
                                     <hr />
                                     <p>You have successfully completed the application form. Kindly proceed to validate your information.</p>
-                                    <p style="color:#f9f7f6">Thresher shark rudd African lungfish silverside, Red salmon rockfish grunion, garpike zebra danio king-of-the-salmon banjo catfish. Sea chub demoiselle whalefish zebra lionfish mud cat pelican eel.</p>
+                                    <form action="Dashboard/?handler=Upload"
+                                          enctype="multipart/form-data" onsubmit="AJAXSubmit(this);return false;"
+                                          method="post">
+                                        <dl>
+                                            <dt>
+                                                <label for="FileUpload_FormFile">File</label>
+                                            </dt>
+                                            <dd>
+                                                <input id="FileUpload_FormFile" type="file"
+                                                       name="FileUpload.FormFile" />
+                                            </dd>
+                                        </dl>
+
+                                        <input class="btn" type="submit" value="Upload" />
+
+                                        <div style="margin-top:15px">
+                                            <output name="result"></output>
+                                        </div>
+                                    </form>
+                                    <p class="mt-5" style="color:#f9f7f6">Thresher shark rudd African lungfish silverside, Red salmon rockfish grunion, garpike zebra danio king-of-the-salmon banjo catfish. Sea chub demoiselle whalefish zebra lionfish mud cat pelican eel.</p>
                                 </div>
                                 <div class="vertical-tabs__item" id="tab-validation">
                                     <div id="PaymentMadeForValidations" class="mb-5">
@@ -133,3 +152,29 @@
         </section>
         <!-- bottom bg end-->
     </main>
+
+
+@section pageScripts{ 
+    <script>
+        async function AJAXSubmit(oFormElement) {
+            var resultElement = oFormElement.elements.namedItem("result");
+            const formData = new FormData(oFormElement);
+
+            try {
+                const response = await fetch(oFormElement.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    window.location.href = '/';
+                }
+
+                resultElement.value = 'Result: ' + response.status + ' ' +
+                    response.statusText;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+    </script>
+}
